@@ -11,6 +11,16 @@ The csr bot is used to help reduce the load of the company csr agents by provind
 - Company web interface (single page app built with React.js) for chat creation
 - Integration of deployed classification model as Rest API with company web app to provide live inference and categorization to unknown customer questions/interactions
 
+## Project Stage
+
+### Stage 1: Data wrangling and first model traning
+Everthing went straight, we use a dervied of BERT pretrained model to further train our model on topic classification according to customer interaction and defined sets of topics.
+
+#### Improvement
+- Data masking before training and live prediction: use nlp ner
+- some data label are ambiguous -> to be replaced
+- set of distinct data label too short -> complete with our own and perform zero shot classification to update existing with new labels(from our own set), 
+
 ## Tech Stack
 - Python (Pandas, Numpy, Flask)
 - AWS (Sagemaker, codepipeline, Q, Lambda, container)
