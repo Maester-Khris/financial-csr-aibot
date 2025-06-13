@@ -20,6 +20,13 @@ Everthing went straight, we use a dervied of BERT pretrained model to further tr
 - Data masking before training and live prediction: use nlp ner
 - some data label are ambiguous -> to be replaced
 - set of distinct data label too short -> complete with our own and perform zero shot classification to update existing with new labels(from our own set), 
+- add the visual for the label distribution and confidence score before and after new label
+
+
+📌 Recommendation (Best Trade-Off):
+🔹 Treat the top 2 (A and B) as majority
+🔹 All others (including C–E) as minority
+🔹 Upsample all minorities to match a mid-point (e.g., 400–450), not the full 500+
 
 ## Tech Stack
 - Python (Pandas, Numpy, Flask)
@@ -27,3 +34,21 @@ Everthing went straight, we use a dervied of BERT pretrained model to further tr
 - Databricks
 - React.js
 - TailwindCSS
+
+
+balanced dataset creation
+import nlpaug.augmenter.word as naw
+
+aug = naw.SynonymAug(aug_src='wordnet')
+augmented_texts = []
+
+for _, row in df_minority.iterrows():
+    for _ in range(n_repeats):  # How many augmented copies
+        augmented_texts.append({
+            "user_interaction": aug.augment(row['user_interaction']),
+            "label": row['label']
+        })
+
+df_augmented = pd.DataFrame(augmented_texts)
+
+df_balanced = df_balanced.sample(frac=1).reset_index(drop=True)

@@ -12,3 +12,23 @@ import pandas as pd
 df = pd.read_csv("/content/data/topics_definitions.csv")
 
 df.head(3)
+
+from sentence_transformers import SentenceTransformer, util
+import torch
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+
+# Suppose topic_df has multiple rows per topic
+# with columns: topic, description, example
+
+topic_embeddings = {}
+for topic, group in topic_df.groupby("topic"):
+    enriched_texts = (
+        "Topic: " + group["topic"] +
+        ". Description: " + group["description"] +
+        " Example: " + group["example"]
+    ).tolist()
+    
+    embeddings = model.encode(enriched_texts, convert_to_tensor=True)
+    avg_embedding = torch.mean(embeddings, dim=0)
+    topic_embeddings[topic] = avg_embedding
