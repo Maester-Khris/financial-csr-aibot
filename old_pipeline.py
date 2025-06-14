@@ -1,3 +1,11 @@
+import spacy_sentence_bert
+from sklearn.model_selection import train_test_split
+
+from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+
 nlp = spacy_sentence_bert.load_model('en_stsb_distilbert_base')
 df['vector'] = df['User'].apply(lambda x: nlp(x).vector)
 

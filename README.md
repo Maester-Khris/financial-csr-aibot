@@ -41,6 +41,7 @@ import nlpaug.augmenter.word as naw
 
 aug = naw.SynonymAug(aug_src='wordnet')
 augmented_texts = []
+target = 450 #target_count_per_augmentation_perclass (mean or median of max class)
 
 for _, row in df_minority.iterrows():
     for _ in range(n_repeats):  # How many augmented copies
