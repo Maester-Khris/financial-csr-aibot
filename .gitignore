@@ -1,0 +1,83 @@
+# ----------------------
+# Python
+# ----------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+*.env
+*.envrc
+pip-log.txt
+pip-delete-this-directory.txt
+
+# PyTorch, TensorFlow, Scikit-learn artifacts
+*.h5
+*.hdf5
+*.ckpt
+*.pth
+*.pt
+*.joblib
+*.pkl
+
+# Local data
+data/
+*.csv
+*.tsv
+*.jsonl
+*.parquet
+*.npy
+*.npz
+
+# VSCode and IDEs
+.vscode/
+.idea/
+*.swp
+
+# ----------------------
+# Terraform
+# ----------------------
+*.tfstate
+*.tfstate.*
+.crash
+.terraform/
+.terraform.lock.hcl
+*.backup
+terraform.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# AWS credentials or config (if accidentally copied)
+.aws/
+
+# ----------------------
+# Packaging artifacts
+# ----------------------
+*.tar.gz
+model.tar.gz
+*.zip
+
+# ----------------------
+# Logs and system
+# ----------------------
+*.log
+*.out
+*.err
+.DS_Store
+Thumbs.db
