@@ -1,5 +1,5 @@
 def model_fn(model_dir):
-    import joblib
+    import pickle
     model = joblib.load(f"{model_dir}/model.joblib")
     return model
 

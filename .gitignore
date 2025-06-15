@@ -81,3 +81,13 @@ model.tar.gz
 *.err
 .DS_Store
 Thumbs.db
+
+# ----------------------
+# Docker files and contexts
+# ----------------------
+**/Dockerfile
+**/.dockerignore
+docker/
+.docker/
+docker-compose.yml
+**/docker-compose.yml

@@ -36,20 +36,6 @@ Everthing went straight, we use a dervied of BERT pretrained model to further tr
 - TailwindCSS
 
 
-balanced dataset creation
-import nlpaug.augmenter.word as naw
-
-aug = naw.SynonymAug(aug_src='wordnet')
-augmented_texts = []
-target = 450 #target_count_per_augmentation_perclass (mean or median of max class)
-
-for _, row in df_minority.iterrows():
-    for _ in range(n_repeats):  # How many augmented copies
-        augmented_texts.append({
-            "user_interaction": aug.augment(row['user_interaction']),
-            "label": row['label']
-        })
-
-df_augmented = pd.DataFrame(augmented_texts)
-
-df_balanced = df_balanced.sample(frac=1).reset_index(drop=True)
+## MLops
+- create two version of the sagemaker image one for local use one for use in aws sagemaker, publish both
+- update terraform configuration to create a lambda and api gateway for use by aws sagemaker
