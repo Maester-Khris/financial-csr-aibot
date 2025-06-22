@@ -1,4 +1,4 @@
+spacy-sentence-bert==0.1.2
 scikit-learn
-spacy-sentence-bert
 joblib
 flask  # or any other server framework (optional)

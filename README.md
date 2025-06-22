@@ -38,4 +38,10 @@ Everthing went straight, we use a dervied of BERT pretrained model to further tr
 
 ## MLops
 - create two version of the sagemaker image one for local use one for use in aws sagemaker, publish both
-- update terraform configuration to create a lambda and api gateway for use by aws sagemaker
+- update terraform configuration to create a ecr repository, lambda, api gateway for use by aws sagemaker
+
+
+## APi gateway + lambda
+- create lambda function
+- added iam permission to lambda
+- create api gateway
