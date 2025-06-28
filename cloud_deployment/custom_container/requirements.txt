@@ -1,4 +1,6 @@
 spacy-sentence-bert==0.1.2
 scikit-learn
 joblib
-flask  # or any other server framework (optional)
+flask
+Werkzeug
+gunicorn

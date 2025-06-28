@@ -1,0 +1,54 @@
+FROM python:3.10-slim
+
+#FROM ubuntu:18.04
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nginx \
+    ca-certificates \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# wget \
+# python3-pip \
+# python3-setuptools \
+
+# RUN ln -s /usr/bin/python3 /usr/bin/python
+# RUN ln -s /usr/bin/pip3 /usr/bin/pip
+
+# RUN apt-get update && \
+#     apt-get install -y --no-install-recommends software-properties-common && \
+#     add-apt-repository ppa:deadsnakes/ppa && \
+#     apt-get update && \
+#     apt-get install -y --no-install-recommends \
+#         python3.10 \
+#         python3.10-distutils \
+#         python3.10-venv \
+#         wget \
+#         build-essential \
+#         nginx \
+#         ca-certificates && \
+#     rm -rf /var/lib/apt/lists/*
+
+# # Make python / pip point to 3.10
+# RUN ln -sf /usr/bin/python3.10 /usr/bin/python && \
+#     curl -sS https://bootstrap.pypa.io/get-pip.py | python
+
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+# Copy scripts and requirements
+#COPY inference.py .
+
+ENV PYTHONUNBUFFERED=TRUE
+ENV PYTHONDONTWRITEBYTECODE=TRUE
+ENV PATH="/opt/program:${PATH}"
+
+
+# Set up working directory
+COPY text_classifier /opt/program
+WORKDIR /opt/program
+
