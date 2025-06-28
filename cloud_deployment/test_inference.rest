@@ -1,6 +1,10 @@
-POST http://localhost:8080/invocations
-Content-Type: application/json
+# POST http://localhost:8080/invocations
+# Content-Type: application/json
 
-{
-  "text": "Hi Sarah, my name is Michael. I tried to log into my online banking, but it keeps saying my credentials are incorrect. Can you help me regain access?"
-}
+# {
+#   "text": "Hi Sarah, my name is Michael. I tried to log into my online banking, but it keeps saying my credentials are incorrect. Can you help me regain access?"
+# }
+
+
+
+GET http://localhost:8080/ping
