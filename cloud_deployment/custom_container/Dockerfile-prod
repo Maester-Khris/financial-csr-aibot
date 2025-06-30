@@ -1,7 +1,5 @@
 FROM python:3.10-slim
 
-#FROM ubuntu:18.04
-
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     nginx \
@@ -9,6 +7,27 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+ENV PYTHONUNBUFFERED=TRUE
+ENV PYTHONDONTWRITEBYTECODE=TRUE
+ENV PATH="/opt/program:${PATH}"
+
+
+# Set up working directory
+COPY text_classifier /opt/program
+WORKDIR /opt/program
+
+
+
+# =================== Old version ================================
+
+#FROM ubuntu:18.04
+
+# RUN apt-get update && apt-get install -y --no-install-recommends \
 # wget \
 # python3-pip \
 # python3-setuptools \
@@ -34,21 +53,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # RUN ln -sf /usr/bin/python3.10 /usr/bin/python && \
 #     curl -sS https://bootstrap.pypa.io/get-pip.py | python
 
-
-# Install Python dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-
 # Copy scripts and requirements
 #COPY inference.py .
-
-ENV PYTHONUNBUFFERED=TRUE
-ENV PYTHONDONTWRITEBYTECODE=TRUE
-ENV PATH="/opt/program:${PATH}"
-
-
-# Set up working directory
-COPY text_classifier /opt/program
-WORKDIR /opt/program
 
