@@ -1,4 +1,5 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
 @import "tailwindcss";
 
 @tailwind base;
@@ -15,6 +16,14 @@ html, body, #root {
   font-optical-sizing: auto;
   font-weight: 300;
   font-style: normal;
+}
+.fredoka {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
 }
 body{
   font-family: "Quicksand", Arial, Helvetica, sans-serif;
@@ -41,6 +50,7 @@ body{
 }
 
 
+
 /* =========== Animation =================
 */
 @keyframes floating-object {
@@ -63,13 +73,17 @@ body{
 */
 .slick-slider{
   border-radius: 10px!important;
-  padding: 5px;
+  padding: 0px;
 }
 .slick-list,
 .slick-track,
 .slick-slide,
 .slick-slide > div {
   height: 100% !important;
+}
+.slick-slide>div {padding: 0 10px;}
+.slick-list {
+  margin: 0 -10px;
 }
 
 /* ================= loader ================= */

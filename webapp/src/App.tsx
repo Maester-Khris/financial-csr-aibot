@@ -1,11 +1,9 @@
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 
 import './App.css'
-import appLogo from './assets/finbotv2.jpeg'
-// import appLogo from './assets/rx_monitor_brand.png'
+import appLogo from './assets/finbotv2.png'
 import Home from './Menucomponents/Home'
-import Getmore from './Menucomponents/Getmore'
-
+import Contact from './Menucomponents/Contact'
 
 function App() {
   return (
@@ -28,11 +26,10 @@ function App() {
             </div>
           </div>
         </header>
-
-        <section className='main-content section-hero-home'>
+        <section className='main-content section-hero-home' style={{backgroundColor:"transparent"}}>
           <Routes>
             <Route path="/" element={<Home />}></Route>
-            <Route path="/contact" element={<Getmore />}></Route>
+            <Route path="/contact" element={<Contact />}></Route>
           </Routes>
         </section>
       </main>
