@@ -6,8 +6,9 @@ Content-Type: application/json
 }
 
 ###
+###  https://runtime.sagemaker.us-east-1.amazonaws.com/endpoints/sagemaker-text-classifier-2025-06-29-06-41-24-245/invocations
 
-POST https://runtime.sagemaker.us-east-1.amazonaws.com/endpoints/sagemaker-text-classifier-2025-06-29-06-41-24-245/invocations
+POST  https://fleh9aw9ef.execute-api.us-east-1.amazonaws.com/prod/predict
 Content-Type: application/json
 
 {

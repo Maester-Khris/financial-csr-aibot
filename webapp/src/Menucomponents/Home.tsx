@@ -76,14 +76,14 @@ function Home() {
      * 4- static bot response
      */
     // 
-    const addMessage = (message: string, user_msg: string) => {
-        console.log(user_msg);
+    const addMessage = (message: string, sender: string) => {
+        console.log(sender);
         if (!message.trim()) return;
         setMessages(prev => [
-            ...prev, { content: message, createdAt: new Date().toISOString(), user: user_msg }
+            ...prev, { content: message, createdAt: new Date().toISOString(), user: sender }
         ]);
-        setMessageDraft("");
-        if (user_msg == useruuid.current) {
+        if (sender == useruuid.current) {
+            setMessageDraft("");
             botresponder();
         }
     }
@@ -160,7 +160,7 @@ function Home() {
             {/* hero component - foreground */}
             <div className="relative z-10 rounded-md flex flex-col">
                 <div className="hero-title w-[80%] px-8 pt-3">
-                    <h1 className="fredoka text-6xl text-white font-bold">
+                    <h1 className="fredoka text-7xl 2xl:text-8xl text-white font-bold">
                         No more long phone waiting <br/> Your Financial Bot Assistant is  
                         <span className="text-blue-500"> ready</span>  
                     </h1>
@@ -201,75 +201,73 @@ function Home() {
                 </div>
             </div>
             </div>
-            {/* chat component  h-full */}
-            <div className="col-span-3 relative flex flex-col justify-end items-center bg-white rounded-md px-8 py-4" style={{}}>
-            <div
-                className="absolute inset-0 rounded-md bg-cover bg-no-repeat opacity-85"
-                style={{ backgroundImage: `url(${chatBg})` }}
-            >  
-            </div>
-            <div className="relative">
-                <img
-                    src={BotImg}
-                    className="absolute top-2 left-[60px] h-[150px] w-[150px] animate-floating filter drop-shadow-[0_10px_8px_rgba(0,0,0,0.4)]"
-                    alt=""
-                />
-                {/*message list component  overflow-x-hidden overflow-y-scroll no-scrollbar overflow-y-auto overflow-x-hidden no-scrollbar  */}
-                <div className="messages overflow-y-auto flex h-[490px] flex-col justify-end w-full px-2 py-2 mb-2">
-                    <div ref={scrollRef} className="flex flex-col overflow-y-scroll no-scrollbar">
-                    {messages.map((m, i) => {
-                        const isCustomer = m.user === useruuid.current;
-                        const wrapperClass = clsx("mb-2 w-full flex items-start", isCustomer && "flex-row-reverse");
-                        const bubbleClass = clsx("w-full p-4 rounded-md text-base", isCustomer ? "bg-blue-200" : "bg-gray-300");
-                        const avatarSrc = isCustomer ? CustomerImg : BotImg;
-                        const avatarAlt = isCustomer ? "Customer avatar" : "FinBot avatar";
-                        return (
-                            <div key={i} className={wrapperClass}>
-                                <div className="h-14 w-14 border-2 p-0.5 ml-1 bg-gray-400 border-[#dedede] rounded-md">
-                                    <img
-                                        src={avatarSrc} alt={avatarAlt}
-                                        className="h-full w-full"
-                                    />
-                                </div>
-                                <div className="flex-1 ml-1">
-                                    <div className={bubbleClass}>
-                                        {m.content}
-                                    </div>
-                                    <small className="w-full text-gray-400 px-1 transform -translate-y-1 inline-block text-left">
-                                        {dateFormatter(m.createdAt)}
-                                    </small>
-                                </div>
-                            </div>
-                        )
-                    })}
-                    </div>
+            {/* chat component  left-1/2 -translate-x-1/2 h-full */}
+            <div className="col-span-3 h-full relative flex flex-col justify-end items-center bg-white rounded-md px-8 py-4" style={{}}>
+                <div
+                    className="absolute inset-0 rounded-md bg-cover bg-no-repeat opacity-85"
+                    style={{ backgroundImage: `url(${chatBg})` }}
+                >  
                 </div>
-                {/* sentinel div – optional but handy for scrollIntoView */}
-                <div ref={bottomRef} />
-                {/* new message component */}
-                <div className="flex flex-row w-full justify-start items-start py-2 " style={{}}>
-                    <div className="ml-2 flex-1 flex-col " style={{}}>
-                        <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-blue-500">
+                <div className="relative z-20 h-full flex flex-col">
+                    
+                    <div className="absolute top-2 w-full flex flex-col justify-center items-center">
+                        
+                        <img
+                        src={BotImg}
+                        className="h-[150px] w-[150px] animate-floating filter drop-shadow-[0_10px_8px_rgba(0,0,0,0.4)]"
+                        alt=""/>
+                        <h3 className="text-2xl text-center font-bold fredoka">Hello 👋, <br /> My name is <span className="text-blue-500">Firo</span></h3>
+                    </div>
+
+                    {/*message list component flex-1 lg:max-h-[700px] overflow-x-hidden overflow-y-scroll  overflow-y-auto overflow-x-hidden no-scrollbar  */}
+                    <div className="messages min-h-0 flex-1 flex flex-col justify-end w-full px-2 py-2 mb-2">
+                        <div ref={scrollRef} className="max-h-[500px] 2xl:max-h-[700px] overflow-y-auto no-scrollbar">
+                        {messages.map((m, i) => {
+                            const isCustomer = m.user === useruuid.current;
+                            const wrapperClass = clsx("mb-2 w-full flex items-start", isCustomer && "flex-row-reverse");
+                            const bubbleClass = clsx("w-full p-4 rounded-md text-base", isCustomer ? "bg-blue-200" : "bg-gray-300");
+                            const avatarSrc = isCustomer ? CustomerImg : BotImg;
+                            const avatarAlt = isCustomer ? "Customer avatar" : "FinBot avatar";
+                            return (
+                                <div key={i} className={wrapperClass}>
+                                    <div className="h-14 w-14 border-2 p-0.5 ml-1 bg-gray-400 border-[#dedede] rounded-md">
+                                        <img
+                                            src={avatarSrc} alt={avatarAlt}
+                                            className="h-full w-full"
+                                        />
+                                    </div>
+                                    <div className="flex-1 ml-1">
+                                        <div className={bubbleClass}>
+                                            {m.content}
+                                        </div>
+                                        <small className="w-full text-gray-400 px-1 transform -translate-y-1 inline-block text-left">
+                                            {dateFormatter(m.createdAt)}
+                                        </small>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        </div>
+                    </div>
+
+                    <div className="shrink-0 py-2">
+                        <div className="mx-2 flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-blue-500">
                             <input
-                                value={messagedraft}
-                                onChange={e => setMessageDraft(e.target.value)}
-                                onKeyDown={handleEnterKeyDown}
-                                placeholder="Hello friend! tell me about your visit"
-                                type="text" name="price" id="price"
-                                style={{ lineHeight: '20px', fontSize: '17px' }}
-                                className="px-2 py-3 block min-w-0 grow text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" />
-                            <div className="grid shrink-0 grid-cols-1 focus-within:relative">
-                                <button
-                                    className="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-2 mx-1 my-1 rounded"
-                                    onClick={() => addMessage(messagedraft, useruuid.current)}
-                                >
-                                    <PaperPlaneRight size={32} weight="bold" />
-                                </button>
-                            </div>
+                            value={messagedraft}
+                            onChange={e => setMessageDraft(e.target.value)}
+                            onKeyDown={handleEnterKeyDown}
+                            placeholder="Hello friend! Tell me about your visit"
+                            className="grow px-2 py-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none"
+                            />
+                            <button
+                            onClick={() => addMessage(messagedraft, useruuid.current)}
+                            className="m-1 rounded bg-blue-400 px-2 py-2 font-bold text-white hover:bg-blue-500"
+                            >
+                            <PaperPlaneRight size={32} weight="bold" />
+                            </button>
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     )

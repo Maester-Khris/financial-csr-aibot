@@ -4,6 +4,7 @@ import './App.css'
 import appLogo from './assets/finbotv2.png'
 import Home from './Menucomponents/Home'
 import Contact from './Menucomponents/Contact'
+import Map from './Menucomponents/Map'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <div className='header-menu'>
                 <li><NavLink to="/" className={({ isActive }) => isActive ? "active-link": ""}>Home</NavLink></li>
                 <li><NavLink to="/contact" className={({isActive}) => isActive ? "active-link": ""}>Contact us</NavLink></li>
+                {/* <li><NavLink to="/test" className={({isActive}) => isActive ? "active-link": ""}>Map</NavLink></li> */}
               </div>
             </div>
           </div>
@@ -30,6 +32,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
+            <Route path="/test" element={<Map />}></Route>
           </Routes>
         </section>
       </main>
