@@ -1,12 +1,3 @@
-
-
-// function Contact() {
-//   return (
-//     <div>Contact</div>
-//   )
-// }
-
-
 import React from "react";
 import {
     ChatBubbleLeftRightIcon,

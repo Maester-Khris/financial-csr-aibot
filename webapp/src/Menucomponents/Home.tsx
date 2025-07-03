@@ -1,4 +1,3 @@
-
 import Slider from "react-slick";
 import BotImg from '../assets/bot.png'
 import CustomerImg from '../assets/customer.png'
@@ -54,7 +53,7 @@ function Home() {
     }, []);
 
     const scrollRef  = useRef<HTMLDivElement | null>(null);
-    const bottomRef  = useRef<HTMLDivElement | null>(null); 
+    // const bottomRef  = useRef<HTMLDivElement | null>(null); 
 
     var carouselSsettings = {
         dots: false,

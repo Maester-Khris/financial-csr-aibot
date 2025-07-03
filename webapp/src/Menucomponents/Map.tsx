@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import * as turf from '@turf/turf'; 
+// import * as turf from '@turf/turf'; 
 import {
     MapContainer,
     TileLayer,
@@ -26,19 +26,19 @@ type Edge = {
 };
 
 /** Bounding box that roughly fits the City of Toronto */
-const BOUNDS = {
-    north: 43.8555,
-    south: 43.57, // A bit more conservative, but still just a bounding box for initial random generation
-    west: -79.6393,
-    east: -79.1169,
-};
-const randomInRange = (min: number, max: number) =>
-    Math.random() * (max - min) + min;
+// const BOUNDS = {
+//     north: 43.8555,
+//     south: 43.57, // A bit more conservative, but still just a bounding box for initial random generation
+//     west: -79.6393,
+//     east: -79.1169,
+// };
+// const randomInRange = (min: number, max: number) =>
+//     Math.random() * (max - min) + min;
 
-const randomCoord = (): LatLngTuple => [
-    randomInRange(BOUNDS.south, BOUNDS.north),
-    randomInRange(BOUNDS.west, BOUNDS.east),
-];
+// const randomCoord = (): LatLngTuple => [
+//     randomInRange(BOUNDS.south, BOUNDS.north),
+//     randomInRange(BOUNDS.west, BOUNDS.east),
+// ];
 
 
 /** Helper to turn a React‑Icon into a Leaflet DivIcon */
@@ -58,12 +58,12 @@ const providerIcon = buildDivIcon(
     <FaClinicMedical size={28} style={{ color: "#dc2626" }} />,
 );
 // Icon for identified underserved cluster centroids
-const clusterIcon = new L.Icon({
-    iconUrl: 'https://cdn-icons-png.flaticon.com/512/5766/5766023.png', // Example: a target or hotspot icon
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-    popupAnchor: [0, -40],
-});
+// const clusterIcon = new L.Icon({
+//     iconUrl: 'https://cdn-icons-png.flaticon.com/512/5766/5766023.png', // Example: a target or hotspot icon
+//     iconSize: [40, 40],
+//     iconAnchor: [20, 40],
+//     popupAnchor: [0, -40],
+// });
 
 
 const haversine = (coord1: [number, number], coord2: [number, number]): number => {
