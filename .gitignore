@@ -126,3 +126,7 @@ pnpm-debug.log*
 .env.production
 .env.test
 .env.*.local
+
+
+# 
+.artifacts
