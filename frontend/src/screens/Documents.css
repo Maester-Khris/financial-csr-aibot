@@ -1,0 +1,132 @@
+.documents {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.documents__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.documents__breadcrumb span {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.documents__avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #d1d5db;
+  display: inline-block;
+}
+
+.documents__body {
+  padding: var(--space-3);
+  flex: 1;
+}
+
+.documents__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.documents__title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.documents__subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  max-width: 560px;
+}
+
+.documents__filters {
+  display: flex;
+  gap: 8px;
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.documents__filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--color-border);
+  background: #ffffff;
+  border-radius: var(--radius-pill);
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: border-color var(--motion-fast), color var(--motion-fast);
+}
+
+.documents__filter-chip:hover {
+  color: var(--color-text-primary);
+}
+
+.documents__filter-chip--active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  background: var(--color-accent-tint);
+}
+
+.documents__filter-chip--warning.documents__filter-chip--active {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+  background: var(--color-warning-tint);
+}
+
+.documents__filter-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.documents__filter-dot--warning {
+  background: var(--color-warning);
+}
+
+.documents__filter-dot--success {
+  background: var(--color-success);
+}
+
+.documents__filter-count {
+  font-size: 10px;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+}
+
+.documents__table-panel {
+  padding: 0;
+  overflow: hidden;
+}
+
+.documents__table-panel .data-table {
+  min-width: 760px;
+}
+
+.documents__table-panel td:first-child {
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .documents__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
