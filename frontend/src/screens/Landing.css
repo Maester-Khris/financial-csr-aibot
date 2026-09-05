@@ -36,6 +36,7 @@
   color: var(--color-text-secondary);
   font-size: 14px;
   font-weight: 500;
+  transition: color var(--motion-fast);
 }
 
 .landing__nav-links a:hover {
@@ -43,6 +44,7 @@
 }
 
 .landing__hero {
+  position: relative;
   background: var(--color-bg-dark);
   color: #ffffff;
   padding: var(--space-6) var(--space-4) 96px;
@@ -50,6 +52,23 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  overflow: hidden;
+}
+
+.landing__hero::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  width: 900px;
+  height: 560px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(59, 130, 246, 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+.landing__hero > * {
+  position: relative;
 }
 
 .landing__eyebrow {
@@ -280,6 +299,12 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: var(--space-3);
+  transition: border-color var(--motion-base), box-shadow var(--motion-base);
+}
+
+.landing__feature-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 24px -12px rgba(17, 24, 39, 0.12);
 }
 
 .landing__feature-icon {
@@ -342,21 +367,30 @@
 }
 
 .landing__cta-section {
-  padding: 0 var(--space-4) var(--space-section);
-  max-width: 1120px;
-  margin: 0 auto;
+  padding: var(--space-section) var(--space-4);
+  background: #fafafa;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .landing__cta-card {
+  max-width: 880px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  background: #fafafa;
+  background: #ffffff;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
   padding: var(--space-4);
   flex-wrap: wrap;
+  transition: border-color var(--motion-base), box-shadow var(--motion-base);
+}
+
+.landing__cta-card:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 16px 32px -16px rgba(17, 24, 39, 0.14);
 }
 
 .landing__cta-title {
@@ -426,5 +460,102 @@
   .landing__ledger-card-foot {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes landing-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Hero: plays once on load, like the conversation unfolding in sequence. */
+  .landing__eyebrow,
+  .landing__headline,
+  .landing__subhead,
+  .landing__hero-actions,
+  .landing__mockup,
+  .landing__mockup-bar,
+  .landing__mockup-user,
+  .landing__mockup-meta,
+  .landing__mockup-assistant-name,
+  .landing__mockup-assistant > p,
+  .landing__citation,
+  .landing__ledger-card {
+    animation: landing-fade-up 0.5s ease both;
+  }
+
+  .landing__eyebrow {
+    animation-delay: 0s;
+  }
+  .landing__headline {
+    animation-delay: 0.08s;
+  }
+  .landing__subhead {
+    animation-delay: 0.16s;
+  }
+  .landing__hero-actions {
+    animation-delay: 0.24s;
+  }
+  .landing__mockup {
+    animation-delay: 0.32s;
+  }
+  .landing__mockup-bar {
+    animation-delay: 0.44s;
+  }
+  .landing__mockup-user {
+    animation-delay: 0.54s;
+  }
+  .landing__mockup-meta {
+    animation-delay: 0.62s;
+  }
+  .landing__mockup-assistant-name {
+    animation-delay: 0.7s;
+  }
+  .landing__mockup-assistant > p {
+    animation-delay: 0.78s;
+  }
+  .landing__citation {
+    animation-delay: 0.92s;
+  }
+  .landing__ledger-card {
+    animation-delay: 1.06s;
+  }
+
+  /* Scroll-triggered reveals, toggled by the IntersectionObserver in Landing.tsx. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .landing__feature-grid .reveal:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+  .landing__feature-grid .reveal:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+
+  .landing__info-grid .reveal:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+  .landing__info-grid .reveal:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+
+  .landing__feature-card:hover,
+  .landing__cta-card:hover {
+    transform: translateY(-2px);
   }
 }

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { CheckIcon, LockIcon } from '../components/Icons';
 import './Landing.css';
 
@@ -24,6 +25,23 @@ const FEATURES = [
 ];
 
 export function Landing({ onEnterApp }: LandingProps) {
+  useEffect(() => {
+    const targets = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.15 },
+    );
+    targets.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   return (
     <div className="landing">
       <header className="landing__nav">
@@ -124,7 +142,7 @@ export function Landing({ onEnterApp }: LandingProps) {
 
         <div className="landing__feature-grid">
           {FEATURES.map((feature) => (
-            <div className="landing__feature-card" key={feature.title}>
+            <div className="landing__feature-card reveal" key={feature.title}>
               <div className="landing__feature-icon" aria-hidden="true">
                 <CheckIcon size={16} />
               </div>
@@ -138,14 +156,14 @@ export function Landing({ onEnterApp }: LandingProps) {
 
       <section className="landing__section landing__section--tint" id="how-it-works">
         <div className="landing__info-grid">
-          <div>
+          <div className="reveal">
             <h3 className="landing__info-title">Supported documents</h3>
             <p className="landing__info-body">
               W-2, 1099-NEC, 1099-MISC, T4, T5, Form 941, Schedule C, 1065 K-1, and custom
               institutional financial schedules.
             </p>
           </div>
-          <div>
+          <div className="reveal">
             <h3 className="landing__info-title">Retrieval &amp; generation</h3>
             <p className="landing__info-body">
               AWS Textract OCR extraction feeds a pgvector similarity index in Postgres. Every
@@ -153,7 +171,7 @@ export function Landing({ onEnterApp }: LandingProps) {
               passages — never open free-text recall.
             </p>
           </div>
-          <div id="security">
+          <div className="reveal" id="security">
             <h3 className="landing__info-title">Double-entry ledger core</h3>
             <p className="landing__info-body">
               Every posting is enforced by a deferred balance-invariant constraint trigger —
@@ -165,7 +183,7 @@ export function Landing({ onEnterApp }: LandingProps) {
       </section>
 
       <section className="landing__cta-section" id="docs">
-        <div className="landing__cta-card">
+        <div className="landing__cta-card reveal">
           <div>
             <h2 className="landing__cta-title">Evaluate Ledger Assistant with your team</h2>
             <p className="landing__cta-body">
