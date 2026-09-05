@@ -1,28 +1,10 @@
 import { useEffect } from 'react';
-import { CheckIcon, LockIcon } from '../components/Icons';
+import { CheckIcon, LockIcon, SparkleIcon, PaperclipIcon, LedgerIcon, DocumentsIcon } from '../components/Icons';
 import './Landing.css';
 
 type LandingProps = {
   onEnterApp: () => void;
 };
-
-const FEATURES = [
-  {
-    title: 'Cited answers from source slips',
-    body: 'Every extraction links directly to the underlying PDF page, bounding-box coordinates, and field confidence score for immediate visual audit.',
-    sample: 'REF_SOURCE: T4_Slip14.pdf (p.1, x:142, y:308) [99.8% conf]',
-  },
-  {
-    title: 'Explicit human confirmation',
-    body: 'No automated write actions occur without an authenticated reviewer confirming a balanced debit and credit allocation first.',
-    sample: 'ACTION: POST_JOURNAL_ENTRY [AWAITING CONFIRMATION]',
-  },
-  {
-    title: 'Mathematical balance guarantees',
-    body: 'A deferred constraint trigger enforces strict debits-equal-credits parity within the same transaction as every posting insert.',
-    sample: 'CHECK: sum(DR) - sum(CR) = $0.00',
-  },
-];
 
 export function Landing({ onEnterApp }: LandingProps) {
   useEffect(() => {
@@ -76,7 +58,7 @@ export function Landing({ onEnterApp }: LandingProps) {
             See it in action
           </button>
           <span className="landing__hero-note mono">
-            <CheckIcon size={14} /> DOUBLE-ENTRY BALANCE ENFORCED · CONFIRM-BEFORE-POST
+            <CheckIcon size={14} /> DOUBLE-ENTRY BALANCE ENFORCED
           </span>
         </div>
 
@@ -93,7 +75,9 @@ export function Landing({ onEnterApp }: LandingProps) {
           <div className="landing__mockup-meta mono">10:41 AM · Verified User (Controller)</div>
 
           <div className="landing__mockup-assistant">
-            <div className="landing__mockup-assistant-name">Ledger Assistant · 10:41:04 AM</div>
+            <div className="landing__mockup-assistant-name">
+              <SparkleIcon size={14} className="landing__sparkle" /> Ledger Assistant · 10:41:04 AM
+            </div>
             <p>
               Total state tax withholding across Schedule B matches the Form 941 line 2 summary
               at <strong>$148,290.40</strong>. There is an unallocated difference of $0.00
@@ -102,7 +86,9 @@ export function Landing({ onEnterApp }: LandingProps) {
 
             <div className="landing__citation">
               <div>
-                <div className="landing__citation-name">US_Form_941_Q4_2024_Final.pdf</div>
+                <div className="landing__citation-name">
+                  <PaperclipIcon size={12} /> US_Form_941_Q4_2024_Final.pdf
+                </div>
                 <div className="landing__citation-loc mono">
                   Page 2, Box 2 &amp; Schedule B Line 12 · Coordinate (x:420, y:692)
                 </div>
@@ -134,67 +120,160 @@ export function Landing({ onEnterApp }: LandingProps) {
         </div>
       </section>
 
-      <section className="landing__section" id="product">
-        <span className="landing__eyebrow-label mono">DESIGNED FOR REVIEW, NOT AUTOMATION</span>
-        <h2 className="landing__section-title">
-          Designed for finance operations. Verified before commit.
-        </h2>
+      <section className="landing__showcase" id="product">
+        <div className="landing__showcase-header reveal">
+          <span className="landing__eyebrow-label mono">DESIGNED FOR REVIEW, NOT AUTOMATION</span>
+          <h2 className="landing__section-title">Designed for finance operations. Verified before commit.</h2>
+        </div>
 
-        <div className="landing__feature-grid">
-          {FEATURES.map((feature) => (
-            <div className="landing__feature-card reveal" key={feature.title}>
-              <div className="landing__feature-icon" aria-hidden="true">
-                <CheckIcon size={16} />
-              </div>
-              <h3 className="landing__feature-title">{feature.title}</h3>
-              <p className="landing__feature-body">{feature.body}</p>
-              <div className="landing__feature-sample mono">{feature.sample}</div>
+        <div className="landing__showcase-grid reveal">
+          <div className="landing__showcase-text">
+            <div className="landing__feature-icon" aria-hidden="true">
+              <DocumentsIcon size={16} />
             </div>
-          ))}
+            <h2>Cited answers from source slips</h2>
+            <p>
+              Every extraction links directly to the underlying PDF page, bounding-box coordinates, and field confidence score for immediate visual audit.
+            </p>
+          </div>
+          <div className="landing__showcase-visual">
+            <div className="landing__ui-card" style={{ padding: '16px' }}>
+               <div className="landing__citation" style={{ marginBottom: 0 }}>
+                  <div>
+                    <div className="landing__citation-name">
+                      <PaperclipIcon size={12} /> T4_Slip14.pdf
+                    </div>
+                    <div className="landing__citation-loc mono">
+                      Page 1, Coordinate (x:142, y:308)
+                    </div>
+                  </div>
+                  <span className="status-pill status-pill--success mono">99.8%</span>
+               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="landing__showcase-grid landing__showcase-grid--reverse reveal" id="security">
+          <div className="landing__showcase-text">
+            <div className="landing__feature-icon" aria-hidden="true">
+              <LockIcon size={16} />
+            </div>
+            <h2>Explicit human confirmation</h2>
+            <p>
+              No automated write actions occur without an authenticated reviewer confirming a balanced debit and credit allocation first.
+            </p>
+          </div>
+          <div className="landing__showcase-visual">
+            <div className="landing__ui-card">
+              <div className="landing__ui-card-header mono">
+                <span>ACTION: POST_JOURNAL_ENTRY</span>
+                <span className="landing__ui-badge landing__ui-badge--warning">AWAITING CONFIRMATION</span>
+              </div>
+              <div className="landing__ui-list">
+                <div className="landing__ui-item">
+                  <div className="landing__ui-item-left">
+                    <span className="landing__ui-title">Review proposed entry</span>
+                    <span className="landing__ui-sub mono">USER: CONTROLLER</span>
+                  </div>
+                  <div className="landing__ui-item-right mono">
+                    PENDING
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="landing__showcase-grid reveal">
+          <div className="landing__showcase-text">
+            <div className="landing__feature-icon" aria-hidden="true">
+              <CheckIcon size={16} />
+            </div>
+            <h2>Mathematical balance guarantees</h2>
+            <p>
+              A deferred constraint trigger enforces strict debits-equal-credits parity within the same transaction as every posting insert.
+            </p>
+          </div>
+          <div className="landing__showcase-visual landing__showcase-visual--code mono">
+            <div className="landing__code-bar">
+              <span className="landing__code-dot"></span>
+              <span className="landing__code-dot"></span>
+              <span className="landing__code-dot"></span>
+            </div>
+            <pre>
+              <code>
+<span className="landing__code-kw">CHECK</span>: sum(DR) - sum(CR) = $0.00<br/>
+<br/>
+<span className="landing__code-comment">-- Enforced within the same transaction</span><br/>
+<span className="landing__code-comment">-- as every posting insert.</span>
+              </code>
+            </pre>
+          </div>
         </div>
       </section>
 
-      <section className="landing__section landing__section--tint" id="how-it-works">
-        <div className="landing__info-grid">
-          <div className="reveal">
-            <h3 className="landing__info-title">Supported documents</h3>
-            <p className="landing__info-body">
-              W-2, 1099-NEC, 1099-MISC, T4, T5, Form 941, Schedule C, 1065 K-1, and custom
-              institutional financial schedules.
-            </p>
-          </div>
-          <div className="reveal">
-            <h3 className="landing__info-title">Retrieval &amp; generation</h3>
-            <p className="landing__info-body">
-              AWS Textract OCR extraction feeds a pgvector similarity index in Postgres. Every
-              answer is generated through a LiteLLM-routed model call, grounded in the retrieved
-              passages — never open free-text recall.
-            </p>
-          </div>
-          <div className="reveal" id="security">
-            <h3 className="landing__info-title">Double-entry ledger core</h3>
-            <p className="landing__info-body">
-              Every posting is enforced by a deferred balance-invariant constraint trigger —
-              debits equal credits within the same transaction, or it rolls back. Idempotency
-              keys prevent duplicate writes on retry.
-            </p>
+      <section className="landing__infrastructure reveal" id="how-it-works">
+        <div className="landing__infra-content">
+          <span className="landing__eyebrow-label mono">UNDER THE HOOD</span>
+          <h2 className="landing__section-title">How it works</h2>
+          <div className="landing__infra-grid">
+            <div className="landing__infra-card">
+              <div className="landing__infra-icon-badge">
+                <DocumentsIcon size={20} className="landing__infra-icon" />
+              </div>
+              <h3>Supported documents</h3>
+              <p>W-2, 1099-NEC, 1099-MISC, T4, T5, Form 941, Schedule C, 1065 K-1, and custom institutional financial schedules.</p>
+            </div>
+            <div className="landing__infra-card">
+              <div className="landing__infra-icon-badge">
+                <SparkleIcon size={20} className="landing__infra-icon" />
+              </div>
+              <h3>Retrieval &amp; generation</h3>
+              <p>AWS Textract OCR extraction feeds a pgvector similarity index in Postgres. Every answer is generated through a LiteLLM-routed model call, grounded in the retrieved passages — never open free-text recall.</p>
+            </div>
+            <div className="landing__infra-card">
+              <div className="landing__infra-icon-badge">
+                <LedgerIcon size={20} className="landing__infra-icon" />
+              </div>
+              <h3>Double-entry ledger core</h3>
+              <p>Every posting is enforced by a deferred balance-invariant constraint trigger — debits equal credits within the same transaction, or it rolls back. Idempotency keys prevent duplicate writes on retry.</p>
+            </div>
           </div>
         </div>
       </section>
 
       <section className="landing__cta-section" id="docs">
-        <div className="landing__cta-card reveal">
-          <div>
-            <h2 className="landing__cta-title">Evaluate Ledger Assistant with your team</h2>
-            <p className="landing__cta-body">
-              Walk through a sample T4 and Form 941 reconciliation without connecting live
-              financial accounts.
-            </p>
+        <div className="landing__cta-layout">
+          <div className="landing__cta-content">
+            <h2 className="landing__cta-title">Ready to secure your ledger ops?</h2>
+            <ul className="landing__cta-bullets">
+              <li><CheckIcon size={14} className="landing__cta-check" /> Cites the exact source page for every figure</li>
+              <li><CheckIcon size={14} className="landing__cta-check" /> Never posts to the ledger without human confirmation</li>
+              <li><CheckIcon size={14} className="landing__cta-check" /> Posts to a real double-entry ledger, not a mock</li>
+            </ul>
+            <div className="landing__cta-actions">
+              <button type="button" className="btn btn-primary btn-lg" onClick={onEnterApp}>
+                See it in action
+              </button>
+            </div>
           </div>
-          <div className="landing__cta-actions">
-            <button type="button" className="btn btn-primary" onClick={onEnterApp}>
-              See it in action
-            </button>
+          <div className="landing__cta-visual">
+            <div className="landing__ui-card landing__cta-mockup">
+              <div className="landing__ledger-card-head mono" style={{ borderBottom: '1px solid var(--color-border)' }}>
+                <span>PROPOSED BALANCED GENERAL LEDGER ENTRY</span>
+              </div>
+              <div className="landing__ledger-row mono">
+                <span>DEBIT&nbsp;&nbsp;2200 · State Withholding</span>
+                <span>$148,290.40</span>
+              </div>
+              <div className="landing__ledger-row mono">
+                <span>CREDIT&nbsp;1010 · Operating Cash</span>
+                <span>$148,290.40</span>
+              </div>
+              <div className="landing__ledger-card-foot mono" style={{ borderTop: '1px solid var(--color-border)', color: 'var(--color-success)' }}>
+                <span>Confirmed &amp; Posted ✓</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
