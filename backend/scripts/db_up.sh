@@ -42,4 +42,13 @@ for db in ledger_dev ledger_test; do
   fi
 done
 
-echo "Postgres and both databases are ready. (Migrations are wired in a later step.)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ALEMBIC="$SCRIPT_DIR/.venv/bin/alembic"
+
+echo "Running migrations against ledger_dev..."
+(cd "$SCRIPT_DIR" && ALEMBIC_DATABASE_URL="postgresql+psycopg://postgres:${PG_PASSWORD}@localhost:${PG_PORT}/ledger_dev" "$ALEMBIC" upgrade head)
+
+echo "Running migrations against ledger_test..."
+(cd "$SCRIPT_DIR" && ALEMBIC_DATABASE_URL="postgresql+psycopg://postgres:${PG_PASSWORD}@localhost:${PG_PORT}/ledger_test" "$ALEMBIC" upgrade head)
+
+echo "Done. ledger_dev and ledger_test are up to date."
