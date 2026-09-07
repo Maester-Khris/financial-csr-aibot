@@ -27,7 +27,8 @@ def upgrade() -> None:
 
           IF imbalance != 0 THEN
             RAISE EXCEPTION 'posting % is unbalanced: debit/credit mismatch of %',
-              NEW.posting_id, imbalance;
+              NEW.posting_id, imbalance
+              USING ERRCODE = 'integrity_constraint_violation';
           END IF;
 
           RETURN NULL;
