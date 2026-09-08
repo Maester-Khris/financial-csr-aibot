@@ -6,6 +6,7 @@ chat feature (OCR ingestion, retrieval-augmented Q&A with citations, and
 agentic tool-calls back into the ledger).
 
 Full scope and phased execution plan: [artifacts/product-backlog.md](artifacts/product-backlog.md).
+See [`CHANGELOG.md`](./CHANGELOG.md) for what's shipped so far, sprint by sprint.
 
 **Status:** ledger DB core (Epic 1.1 schema/migrations + Epic 1.2 balance
 invariant enforcement) implemented, database side only — see
