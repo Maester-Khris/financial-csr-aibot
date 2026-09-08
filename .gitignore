@@ -128,5 +128,10 @@ pnpm-debug.log*
 .env.*.local
 
 
-# 
+#
 .artifacts
+
+# ----------------------
+# graphify
+# ----------------------
+graphify-out/
